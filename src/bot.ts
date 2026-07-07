@@ -6,7 +6,22 @@ import { createBot, type BotContext } from "./toolkit/index.js";
 // bot grows. Durable domain data must NOT live here — use the toolkit's
 // persistent storage (see AGENTS.md).
 export interface Session {
-  // example: step?: "awaiting_amount";
+  /** Current flow step for multi-step conversations */
+  step?: string;
+  // Team creation flow
+  newTeamName?: string;
+  newTeamTz?: string;
+  // Reminder creation flow
+  remTitle?: string;
+  remAssigneeId?: number;
+  remSchedule?: string;
+  // Pagination state
+  reminderListPage?: number;
+  // Snooze
+  snoozeRemId?: string;
+  // Add member
+  addMemberTargetId?: number;
+  addMemberTargetName?: string;
 }
 
 export type Ctx = BotContext<Session>;
